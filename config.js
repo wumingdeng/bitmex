@@ -2,10 +2,12 @@ const CONF = {
     development: {
         port:3000,
         server_path:'https://www.bitmex.com'
+
     },
     production: {
         port:3000,
         server_path:'https://www.bitmex.com'
+
     }
 }
 

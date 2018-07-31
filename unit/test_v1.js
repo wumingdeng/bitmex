@@ -1,20 +1,32 @@
 const request = require('request');
+let i = 0
+let fun = {
+    getHand: function ($self) {
+        i++
+        let self = $self?$self:this
+        let headers = {
+            'X-TOKEN': 'f774c8b8d287a0ef55e052801dba7936QYa6QrxM1l+jNFmPTEq/wc34J12lqEZkYhUzPLpC0R8i14R6LPzIc1qxctW/2WAnAg0s',
+            'X-SIGN': '4B0AD231352D02CD16163531702855BE',
+            'X-TS': 1533021904,
+            'X-APPID': 'toBPJhUqos'
+        };
 
-let headers = {
-    'X-TOKEN': 'c5b8bc9a6afb715eb8bf4d443b595c8eEXbY34idZMo8wEGRwN+jKIG6eXPKp7ERa1vsHWaN3gAZrIzhbl7GRXkboNuY5RUbA1/Y',
-    'X-SIGN': '7057B21E0501161AF2CB12C4FECC3F58',
-    'X-TS': 1532617776,
-    'X-APPID': 'toBPJhUqos'
-};
+        const requestOptions = {
+            headers: headers,
+            url: 'https://xkt.sftui.com/api/v1/feedTrade/getTradeList?page=1&page_size=1',
+            method: 'GET',
+        };
 
-const requestOptions = {
-    headers: headers,
-    url: 'https://xkt.sftui.com/api/v1/feedTrade/getTradeList?page=1&page_size=20',
-    method: 'GET',
-};
+        request(requestOptions, function (error, response, body) {
+            if (error) { console.log(error); } else {
+                body = JSON.parse(body)
+                console.log(body['data']['data_list'][0]);
+                setTimeout(function(){
+                    self.getHand(self)
+                }, 5000)
+            }
+        });
+    }
+}
 
-
-request(requestOptions, function (error, response, body) {
-    if (error) { console.log(error); }
-    console.log(body);
-});
+fun.getHand()

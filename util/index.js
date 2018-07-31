@@ -32,6 +32,7 @@ module.exports = {
                 if (error) {
                     reject(error);
                 } else {
+                    if (util.isString(body)) body = JSON.parse(body)
                     resolve(body);
                 }
             });
@@ -66,6 +67,8 @@ module.exports = {
                 if (error) {
                     reject(error);
                 } else {
+                    if (util.isString(body)) body = JSON.parse(body)
+
                     resolve(body);
                 }
             });
@@ -74,20 +77,22 @@ module.exports = {
     getHandOrder: async function () {
         return new Promise((resolve, reject) => {
             let headers = {
-                'X-TOKEN': 'c5b8bc9a6afb715eb8bf4d443b595c8eEXbY34idZMo8wEGRwN+jKIG6eXPKp7ERa1vsHWaN3gAZrIzhbl7GRXkboNuY5RUbA1/Y',
-                'X-SIGN': '7057B21E0501161AF2CB12C4FECC3F58',
-                'X-TS': 1532617776,
+                'X-TOKEN': 'f774c8b8d287a0ef55e052801dba7936QYa6QrxM1l+jNFmPTEq/wc34J12lqEZkYhUzPLpC0R8i14R6LPzIc1qxctW/2WAnAg0s',
+                'X-SIGN': '4B0AD231352D02CD16163531702855BE',
+                'X-TS': 1533021904,
                 'X-APPID': 'toBPJhUqos'
             };
             const requestOptions = {
                 headers: headers,
-                url: 'https://xkt.sftui.com/api/v1/feedTrade/getTradeList?page=1&page_size=20',
+                url: 'https://xkt.sftui.com/api/v1/feedTrade/getTradeList?page=1&page_size=1',
                 method: 'GET',
             };
             request(requestOptions, function (error, response, body) {
                 if (error) {
                     reject(error);
                 } else {
+                    if (util.isString(body)) body = JSON.parse(body)
+                    body = body['data']['data_list'][0]
                     resolve(body);
                 }
             });

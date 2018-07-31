@@ -7,7 +7,6 @@ router.post('/test', async (ctx, next) => {
     let $symbol = 'TRXU18'
     let data_order = { symbol: $symbol, side: "Sell",orderQty:1, ordType: 'Market' };
     let order = await util.createOrder(apikey, apiSecret, data_order).then(res => {
-        if(util.isString(res)) res = JSON.parse(res)
         return res
     }, err => {
         return null
@@ -17,7 +16,6 @@ router.post('/test', async (ctx, next) => {
         console.log('orderid',orderid)
         let data_sym = { symbol: $symbol};
         let $state = await util.getOrderState(apikey, apiSecret, data_sym).then(res => {
-            if(util.isString(res)) res = JSON.parse(res)
             for(let i in res){
                 let order = res[i]
                 if(order.orderID === orderid){
@@ -29,7 +27,6 @@ router.post('/test', async (ctx, next) => {
             return null
         })
         let hand = await util.getHandOrder().then(res => {
-            if(util.isString(res)) res = JSON.parse(res)
             return res
         }, err => {
             return null
