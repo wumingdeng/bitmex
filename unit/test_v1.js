@@ -13,17 +13,17 @@ let fun = {
 
         const requestOptions = {
             headers: headers,
-            url: 'https://xkt.sftui.com/api/v1/feedTrade/getTradeList?page=1&page_size=1',
+            url: `https://xkt.sftui.com/api/v1/feedTrade/getTradeList?page=1&page_size=20`,
             method: 'GET',
         };
 
         request(requestOptions, function (error, response, body) {
             if (error) { console.log(error); } else {
                 body = JSON.parse(body)
-                console.log(body['data']['data_list'][0]);
-                setTimeout(function(){
-                    self.getHand(self)
-                }, 5000)
+                console.log(body['data']['data_list']);
+                // setTimeout(function(){
+                //     self.getHand(self)
+                // }, 5000)
             }
         });
     }

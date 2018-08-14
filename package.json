@@ -3,10 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/nodemon bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
-    "prd": "pm2 start prod.json --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/nodemon www.js",
+    "dev": "./node_modules/.bin/nodemon www.js"
   },
   "dependencies": {
     "crypto": "^1.0.1",
